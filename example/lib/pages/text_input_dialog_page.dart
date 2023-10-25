@@ -21,7 +21,7 @@ class TextInputDialogPage extends ConsumerWidget {
     final theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text(pascalCaseFromRouteName(GoRouter.of(context).location)),
+        title: Text(pascalCaseFromRouteUri(GoRouterState.of(context).uri)),
       ),
       body: ListView(
         children: <Widget>[
@@ -179,6 +179,7 @@ class TextInputDialogPage extends ConsumerWidget {
               if (!ok) {
                 return;
               }
+              // ignore: use_build_context_synchronously
               await showOkAlertDialog(
                 context: context,
                 title: 'That\'s right👍',

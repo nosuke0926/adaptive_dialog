@@ -14,7 +14,8 @@ Future<OkCancelResult> showOkAlertDialog({
   String? okLabel,
   TextStyle okTextStyle = const TextStyle(),
   bool barrierDismissible = true,
-  @Deprecated('Use `style` instead.') AdaptiveStyle? alertStyle,
+  @Deprecated('Use `style` instead.')
+      AdaptiveStyle? alertStyle,
   AdaptiveStyle? style,
   @Deprecated('Use `ios` instead. Will be removed in v2.')
       bool useActionSheetForCupertino = false,

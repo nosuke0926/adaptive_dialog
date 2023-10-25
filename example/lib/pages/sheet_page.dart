@@ -18,7 +18,7 @@ class SheetPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(pascalCaseFromRouteName(GoRouter.of(context).location)),
+        title: Text(pascalCaseFromRouteUri(GoRouterState.of(context).uri)),
       ),
       body: ListView(
         children: [
