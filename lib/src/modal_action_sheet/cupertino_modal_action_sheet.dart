@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:adaptive_dialog/src/action_callback.dart';
 import 'package:adaptive_dialog/src/extensions/extensions.dart';
 import 'package:flutter/cupertino.dart';
@@ -15,7 +13,8 @@ class CupertinoModalActionSheet<T> extends StatelessWidget {
     this.title,
     this.message,
     this.cancelLabel,
-    this.onWillPop,
+    required this.canPop,
+    required this.onPopInvoked,
   });
 
   final ActionCallback<T> onPressed;
@@ -23,22 +22,18 @@ class CupertinoModalActionSheet<T> extends StatelessWidget {
   final String? title;
   final String? message;
   final String? cancelLabel;
-  final WillPopCallback? onWillPop;
+  final bool canPop;
+  final PopInvokedCallback? onPopInvoked;
 
   @override
   Widget build(BuildContext context) {
-    final mediaQuery = MediaQuery.of(context);
     final title = this.title;
     final message = this.message;
-    return WillPopScope(
-      onWillPop: onWillPop,
-      child: MediaQuery(
-        data: mediaQuery.copyWith(
-          // `CupertinoAlertDialog` overrides textScaleFactor
-          // to keep larger than 1, but `CupertinoActionSheet` doesn't.
-          // https://twitter.com/_mono/status/1266997626693509126
-          textScaleFactor: max(1, mediaQuery.textScaleFactor),
-        ),
+    return PopScope(
+      canPop: canPop,
+      onPopInvoked: onPopInvoked,
+      child: MediaQuery.withClampedTextScaling(
+        minScaleFactor: 1,
         child: CupertinoActionSheet(
           title: title == null ? null : Text(title),
           message: message == null ? null : Text(message),
@@ -58,7 +53,10 @@ class CupertinoModalActionSheet<T> extends StatelessWidget {
                   isDestructiveAction: a.isDestructiveAction,
                   isDefaultAction: a.isDefaultAction,
                   onPressed: () => onPressed(a.key),
-                  child: Text(a.label),
+                  child: Text(
+                    a.label,
+                    style: a.textStyle,
+                  ),
                 ),
               )
               .toList(),

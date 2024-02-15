@@ -18,7 +18,8 @@ class MaterialTextInputDialog extends StatefulWidget {
     this.actionsOverflowDirection = VerticalDirection.up,
     this.useRootNavigator = true,
     this.fullyCapitalized = true,
-    this.onWillPop,
+    required this.canPop,
+    required this.onPopInvoked,
     this.autoSubmit = false,
   });
   @override
@@ -37,7 +38,8 @@ class MaterialTextInputDialog extends StatefulWidget {
   final VerticalDirection actionsOverflowDirection;
   final bool useRootNavigator;
   final bool fullyCapitalized;
-  final WillPopCallback? onWillPop;
+  final bool canPop;
+  final PopInvokedCallback? onPopInvoked;
   final bool autoSubmit;
 }
 
@@ -95,8 +97,8 @@ class _MaterialTextInputDialogState extends State<MaterialTextInputDialog> {
         color: widget.isDestructiveAction ? colorScheme.error : null,
       ),
     );
-    return WillPopScope(
-      onWillPop: widget.onWillPop,
+    return PopScope(
+      canPop: widget.canPop,
       child: Form(
         key: _formKey,
         child: AlertDialog(

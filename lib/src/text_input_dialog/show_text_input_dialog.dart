@@ -26,7 +26,8 @@ Future<List<String>?> showTextInputDialog({
   bool useRootNavigator = true,
   VerticalDirection actionsOverflowDirection = VerticalDirection.up,
   bool fullyCapitalizedForMaterial = true,
-  WillPopCallback? onWillPop,
+  bool canPop = true,
+  PopInvokedCallback? onPopInvoked,
   bool autoSubmit = false,
   AdaptiveDialogBuilder? builder,
   RouteSettings? routeSettings,
@@ -54,7 +55,8 @@ Future<List<String>?> showTextInputDialog({
             isDestructiveAction: isDestructiveAction,
             style: adaptiveStyle,
             useRootNavigator: useRootNavigator,
-            onWillPop: onWillPop,
+            canPop: canPop,
+            onPopInvoked: onPopInvoked,
             autoSubmit: autoSubmit,
           );
           return builder == null ? dialog : builder(context, dialog);
@@ -76,7 +78,8 @@ Future<List<String>?> showTextInputDialog({
               isDestructiveAction: isDestructiveAction,
               style: adaptiveStyle,
               useRootNavigator: useRootNavigator,
-              onWillPop: onWillPop,
+              canPop: canPop,
+              onPopInvoked: onPopInvoked,
               autoSubmit: autoSubmit,
             ),
           );
@@ -105,7 +108,8 @@ Future<List<String>?> showTextInputDialog({
             actionsOverflowDirection: actionsOverflowDirection,
             useRootNavigator: useRootNavigator,
             fullyCapitalized: fullyCapitalizedForMaterial,
-            onWillPop: onWillPop,
+            canPop: canPop,
+            onPopInvoked: onPopInvoked,
             autoSubmit: autoSubmit,
           );
           return builder == null ? dialog : builder(context, dialog);

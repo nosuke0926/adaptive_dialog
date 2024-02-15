@@ -1,3 +1,18 @@
+## 2.0.0
+
+- Support Flutter 3.16
+- `onWillPop` is deleted, and `canPop`/`onPopInvoked` is added instead
+  - Migrate to PopScope from WillPopScope
+  - https://docs.flutter.dev/release/breaking-changes/android-predictive-back
+
+## 1.10.1
+
+- Fix TextStyle of showConfirmationDialog/showModalActionSheet (#124)
+
+## 1.10.0
+
+- feat: Add option to set toggleable for showConfirmDialog (#123)
+
 ## 1.9.0+1
 
 - Adds pub topics and screenshots to package metadata.
